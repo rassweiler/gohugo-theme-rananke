@@ -203,7 +203,7 @@ In order to add an unkown service (absent from the list above), you simply need 
 
 If the theme is ran in [production](#production), pages will be indexed by search engines. To prevent indexing on some given pages, add `private: true` to its Front Matter.
 
-### Update font or body classes
+### Update font,body, overlay, or brand classes
 
 The theme is set, by default, to use a near-white background color and the "Avenir" or serif typeface. You can change these in your config file with the `body_classes` parameter, like this:
 
@@ -231,6 +231,18 @@ To get more customisation use custom css classes and style them in a custom css 
   body_classes = "custom-font custom-bg"
   custom_css = ["custom.css"]
 ```
+
+Available classes:
+ 
+```toml
+[params]
+  body_classes = "NAME"
+  background_color_class = "NAME"
+  overlay_color_class = "NAME"
+  brand_color_class = "NAME"
+  custom_css = ["custom.css"]
+```
+
 _n.b. in future versions we will likely separate the typeface and other body classes._
 
 
