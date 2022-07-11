@@ -80,6 +80,10 @@
   border-radius: 0.5rem;
  }
 
+ .pd-1r {
+  padding: 1rem;
+ }
+
  .pd-05r {
   padding: 0.5rem;
  }
@@ -150,6 +154,10 @@
 
    .font-color {
     color: rgb(215, 205, 200);
+  }
+
+  .font-color-i {
+    color: rgb(51, 51, 51);
   }
 }
 
