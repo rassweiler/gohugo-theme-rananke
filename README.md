@@ -240,6 +240,7 @@ Available classes:
   background_color_class = "NAME"
   overlay_color_class = "NAME"
   brand_color_class = "NAME"
+  bg_highlight_color_class = "NAME"
   custom_css = ["custom.css"]
 ```
 
