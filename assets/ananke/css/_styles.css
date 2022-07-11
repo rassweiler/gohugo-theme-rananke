@@ -72,16 +72,32 @@
 	font-display: swap;
  }
 
+ .br-1r {
+  border-radius: 1rem;
+ }
+
+ .br-05r {
+  border-radius: 0.5rem;
+ }
+
+ .pd-05r {
+  padding: 0.5rem;
+ }
+
  .bg-color {
-  background-color: #f4f4f4;
+  background-color: rgb(244, 244, 244);
+ }
+
+ .bg-color-i {
+  background-color: rgb(36, 40, 43);
  }
 
  .overlay-color {
-  background-color: #d6d8db;
+  background-color: rgb(214, 216, 219);
  }
 
  .brand-color {
-  background-color: #000;
+  background-color: rgb(0, 0, 0);
  }
 
  .font-color {
@@ -118,6 +134,10 @@
 @media (prefers-color-scheme: dark) {
   .bg-colour {
     background-color: rgb(36, 40, 43);
+   }
+
+   .bg-color-i {
+    background-color: rgb(244, 244, 244);
    }
 
    .overlay-color {
