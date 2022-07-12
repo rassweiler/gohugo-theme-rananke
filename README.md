@@ -1,4 +1,4 @@
-# Ananke, A theme for [Hugo](https://gohugo.io/), a framework for building websites.
+# Rananke, A theme for [Hugo](https://gohugo.io/), a framework for building websites.
 
 The intent of this theme is to provide a solid starting place for Hugo sites with basic features and include best practices for performance, accessibility, and rapid development.
 
@@ -6,7 +6,7 @@ The intent of this theme is to provide a solid starting place for Hugo sites wit
 
 [DEMO](https://gohugo-ananke-theme-demo.netlify.com/)
 
-Features
+## Features
 
 - Responsive
 - Accessible
@@ -16,6 +16,13 @@ Features
 - RSS Discovery
 - Table of Contents (must declare `toc: true` in post parameter)
 - Stackbit configuration ([Stackbit](https://www.stackbit.com))
+
+New from ananke:
+
+- TOC
+- shortcodes
+- Dark mode
+- jetbrains font
 
 Also includes examples of Hugo Features or Functions:
 
@@ -49,32 +56,10 @@ This theme uses the "Tachyons" CSS library. This will allow you to manipulate th
 
 ## Installation
 
-### As a Hugo Module (recommended)
-
-> ⚠️ If you installed a [Hugo binary](https://gohugo.io/getting-started/installing/#binary-cross-platform), you may not have Go installed on your machine. To check if Go is installed:
-> ```
-> $ go version
-> ```
->  Go modules were considered production ready in v1.14. [Download Go](https://golang.org/dl/). 
-
-1. From your project's root directory, initiate the hugo module system if you haven't already:
-
-   ```
-   $ hugo mod init github.com/<your_user>/<your_project>
-   ```
-
-2. Add the theme's repo to your `config.toml`:
-
-   ```toml
-   theme = ["github.com/theNewDynamic/gohugo-theme-ananke"]
-   ```
-
-### As Git Submodule
-
 Inside the folder of your Hugo site run:
 
-```
-$ git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke
+```zsh
+$ git submodule add https://github.com/rassweiler/gohugo-theme-rananke.git themes/rananke
 ```
 For more information read the official [setup guide](//gohugo.io/overview/installing/) of Hugo.
 
@@ -87,7 +72,7 @@ After installing the theme successfully it requires a just a few more steps to g
 
 ### The config file
 
-Take a look inside the [`exampleSite`](https://github.com/theNewDynamic/gohugo-theme-ananke/tree/master/exampleSite) folder of this theme. You'll find a file called [`config.toml`](https://github.com/theNewDynamic/gohugo-theme-ananke/blob/master/exampleSite/config.toml). To use it, copy the [`config.toml`](https://github.com/theNewDynamic/gohugo-theme-ananke/blob/master/exampleSite/config.toml) in the root folder of your Hugo site. Feel free to change the strings in this theme.
+Take a look inside the [`exampleSite`](https://github.com/rassweiler/gohugo-theme-rananke/tree/master/exampleSite) folder of this theme. You'll find a file called [`config.toml`](https://github.com/rassweiler/gohugo-theme-rananke/blob/master/exampleSite/config.toml). To use it, copy the [`config.toml`](https://github.com/rassweiler/gohugo-theme-rananke/blob/master/exampleSite/config.toml) in the root folder of your Hugo site. Feel free to change the strings in this theme.
 
 You may need to delete the line: `themesDir = "../.."`
 
@@ -98,7 +83,7 @@ To enable comments, add following to your config file:
 
 - DISQUS: `disqusShortname = YOURSHORTNAME`
 - COMMENTO:
-  ```
+  ```toml
   [params]
     commentoEnable = true
   ```
@@ -123,7 +108,7 @@ example: `background_color_class = "bg-blue"` or `background_color_class = "bg-g
 
 This theme includes a shortcode for a contact form that you can add to any page (there is an example on the contact page in the exampleSite folder). One option is to use [formspree.io](//formspree.io/) as proxy to send the actual email. Each month, visitors can send you up to one thousand emails without incurring extra charges. Visit the Formspree site to get the "action" link and add it to your shortcode like this:
 
-```
+```handlebars
 {{< form-contact action="https://formspree.io/your@email.com" >}}
 ```
 
@@ -136,6 +121,7 @@ In order to register a service to be used, user must add an `ananke_socials` par
 - url*: The url of the handle's profile on the service (Ex: https://twitter.com/theNewDynamic, https://github.com/
 theNewDynamic)
 
+YAML:
 ```yaml
 params:
   ananke_socials:
@@ -143,6 +129,17 @@ params:
     url: https://twitter.com/theNewDynamic
   - name: github
     url: https://github.com/theNewDynamic
+```
+
+TOML:
+```toml
+[[params.ananke_socials]]
+name = "twitter"
+url = "https://twitter.com/theNewDynamic"
+
+[[params.ananke_socials]]
+name = "facebook"
+url = "https://facebook.com/theNewDynamic"
 ```
 
 If user needs to overwrite default `color` and `label` of the service, they simply need to append the following to the entry:
@@ -206,18 +203,18 @@ In order to add an unkown service (absent from the list above), you simply need 
 
 If the theme is ran in [production](#production), pages will be indexed by search engines. To prevent indexing on some given pages, add `private: true` to its Front Matter.
 
-### Update font or body classes
+### Update font,body, overlay, or brand classes
 
 The theme is set, by default, to use a near-white background color and the "Avenir" or serif typeface. You can change these in your config file with the `body_classes` parameter, like this:
 
-```
+```toml
 [params]
   body_classes = "avenir bg-near-white"
 ```
 
 which will give you a body class like this:
 
-```
+```html
 <body class="avenir bg-near-white">
 ```
 
@@ -227,6 +224,25 @@ You can find a list of available typefaces [here](https://github.com/tachyons-cs
 
 And a list of background colors [here](https://github.com/tachyons-css/tachyons/blob/v4.7.0/src/_skins.css#L96).
 
+To get more customisation use custom css classes and style them in a custom css file:
+
+```toml
+[params]
+  body_classes = "custom-font custom-bg"
+  custom_css = ["custom.css"]
+```
+
+Available classes:
+ 
+```toml
+[params]
+  body_classes = "NAME"
+  background_color_class = "NAME"
+  overlay_color_class = "NAME"
+  brand_color_class = "NAME"
+  bg_highlight_color_class = "NAME"
+  custom_css = ["custom.css"]
+```
 
 _n.b. in future versions we will likely separate the typeface and other body classes._
 
@@ -239,7 +255,7 @@ Ananke uses [Tachyon.io](https://tachyons.io/) utility class library.
 
 #### Custom CSS
 
-WARNING: Pending resolution of this [discussion](https://github.com/theNewDynamic/gohugo-theme-ananke/discussions/452#discussioncomment-1865301), Custom CSS only works with Hugo Extended
+WARNING: Pending resolution of this [discussion](https://github.com/rassweiler/gohugo-theme-rananke/discussions/452#discussioncomment-1865301), Custom CSS only works with Hugo Extended
 
 In order to complement the default CSS with your own, you can add custom css files to the project. 
 
@@ -250,7 +266,7 @@ The css files will be added in their registered order to final `main.css` file.
 
 For example, if your css files are `assets/ananke/css/custom.css` and `assets/ananke/special.css` then add the following to the config file:
 
-```
+```toml
   [params]
     custom_css = ["custom.css","special.css"]
 ```
@@ -272,7 +288,7 @@ Some scripts need to be added within the page head. To add your own scripts to t
 
 You can replace the title of your site in the top left corner of each page with your own logo. To do that put your own logo into the `static` directory of your website, and add the `site_logo` parameter to the site params in your config file. For example:
 
-```
+```toml
 [params]
   site_logo = "img/logo.svg"
 ```
@@ -283,7 +299,7 @@ You can set the font color of the main content both globally and on individual p
 
 Globally:
 Set the `text_color` param in the `config.toml` file.
-```
+```toml
 [params]
   text_color = "green"
 ```
@@ -298,7 +314,7 @@ note: The value of `text_color` must be a valid tachyons color class. A list can
 
 Dates of blog posts and single pages are rendered with the default date format commonly used in the USA and Canada. It is possible to specify a different format.
 
-```
+```toml
 [params]
   date_format = "2. January 2006"
 ```
@@ -319,24 +335,24 @@ Now enter [`localhost:1313`](http://localhost:1313/) in the address bar of your 
 
 To run in production (e.g. to have Google Analytics show up), run `HUGO_ENV=production` before your build command. For example:
 
-```
+```zsh
 HUGO_ENV=production hugo
 ```
 
 Note: The above command will not work on Windows. If you are running a Windows OS, use the below command:
 
-```
+```zsh
 set HUGO_ENV=production
 hugo
 ```
 
 ## Contributing
 
-If you find a bug or have an idea for a feature, feel free to use the [issue tracker](https://github.com/theNewDynamic/gohugo-theme-ananke/issues) to let me know.
+If you find a bug or have an idea for a feature, feel free to use the [issue tracker](https://github.com/rassweiler/gohugo-theme-rananke/issues) to let me know.
 
 
 
 
 TODO:
 
-- fix hard-coded link to [section](https://github.com/theNewDynamic/gohugo-theme-ananke/blob/master/layouts/index.html#L32)
+- fix hard-coded link to [section](https://github.com/rassweiler/gohugo-theme-rananke/blob/master/layouts/index.html#L32)
